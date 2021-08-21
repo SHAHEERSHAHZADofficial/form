@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sign-Up Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css">
+
+
+
+
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="myCard">
+
+            <center>
+                <div class="myLeftCtn">
+
+                    <!-- <form class="myForm text-center" onsubmit="validation()"> -->
+                    <header>Create new account</header>
+                    <div class="form-group">
+                        <i class="fas fa-user"></i>
+                        <input class="myInput" type="text" placeholder="Username" id="username">
+                    </div>
+                    <div class="form-group">
+
+                        <i class="fas fa-envelope"></i>
+                        <input class="myInput" type="text" placeholder="Email" id="email">
+
+                    </div>
+                    <div class="form-group">
+
+                        <i class="fas fa-key"></i>
+                        <input class="myInput" type="password" placeholder="Password" id="passcode">
+
+                    </div>
+                    <div class="form-group">
+
+                        <i class="fas fa-key"></i>
+                        <input class="myInput" type="password" placeholder="Confirm-password" id="review-passcode">
+
+                    </div>
+                    <!-- <div class="form-group"> -->
+
+                    <!-- </div> -->
+                    <div class="button input-box" id="btnid">
+                        <button type="submit" class="myInput" id="btn" onclick="register()"> Submit </button>
+                    </div>
+
+                    <!-- </form> -->
+                    <div class="text log-in-text">Already have an account?
+                        <a href="login.html"> <label for="flip" id="labletag">Login now</label></a>
+                    </div>
+
+                    <!-- </form> -->
+                    <p id="messagepara"></p>
+
+                </div>
+            </center>
+
+        </div>
+    </div>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+
+</body>
+<script src="app.js"></script>
+<script type="text/javascript"></script>
+
+</html>
