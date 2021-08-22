@@ -33,6 +33,15 @@
 
                     <!-- <form class="myForm text-center" onsubmit="validation()"> -->
                     <header>Create new account</header>
+                    <div class="imgcontainer">
+                        <label>
+                            <img src="./image/img_avatar2.png" alt="Avatar" class="avatar avatar-custom" id="avatar-custom">
+                            <input type="file" placeholder="Upload Image" onchange="imageSelected()" name="upload-image" required
+                                id="upload-image">
+                        </label>
+                    </div>
+                    <br />
+
                     <div class="form-group">
                         <i class="fas fa-user"></i>
                         <input class="myInput" type="text" placeholder="Username" id="username">
@@ -55,6 +64,17 @@
                         <input class="myInput" type="password" placeholder="Confirm-password" id="review-passcode">
 
                     </div>
+                    <!-- <div class="form-group"> -->
+                    <p>Select your role:</p>
+                    <label class="role">Killer
+                        <input type="radio" checked="checked" name="user-role" value="Killer">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="role">Client
+                        <input type="radio" name="user-role" value="Client">
+                        <span class="checkmark"></span>
+                    </label>
+                    <!-- </div> -->
                     <!-- <div class="form-group"> -->
 
                     <!-- </div> -->
