@@ -22,6 +22,16 @@ let errorvalue = document.getElementById("messagepara")
 let db = firebase.firestore()
 let heading = document.getElementById("firstheading")
 
+let userRoleEl = document.getElementsByName('user-role');
+let userImageEl = document.getElementById('upload-image');
+let avatarCustomEl = document.getElementById('avatar-custom');
+
+
+function imageSelected() {
+    let image = userImageEl.files[0];
+    avatarCustomEl.src = `./images/${image.name}`;
+}
+
 function register() {
     firebase.auth().createUserWithEmailAndPassword(email.value, password.value)
         .then((userCredential) => {
@@ -29,15 +39,18 @@ function register() {
             console.log(user)
             validation()
 
-            function saveUserInFirestore() {
+            async function saveUserInFirestore() {
                 // var user = userCredential.user;
                 // console.log(user, userCredential);
-                db.collection("users").add({
-                        email: email.value,
-                        userName: username.value,
-                        password: password.value,
-                        UID: user.uid
-                    })
+                let user = {
+                    email: email.value,
+                    userName: username.value,
+                    password: password.value,
+                    userImage: imageURL,
+                    userRole: giveCheckedRadio(),
+                    uid: UID
+                }
+                await db.collection("users").add(user)
                     .then(() => {
                         console.log("Document written with ID: ", user.uid);
                         window.location = "./login.html";
@@ -49,10 +62,11 @@ function register() {
                     });
             }
             saveUserInFirestore()
-
-
-            // ...
         })
+    let UID = userCreated.user.uid;
+    let imageURL = uploadImageToStorage(uid)
+
+
 
 
     .catch((error) => {
@@ -97,20 +111,42 @@ function login() {
         });
 }
 
+function giveCheckedRadio() {
+    let checkedProp;
+    for (var i = 0; i < userRoleEl.length; i++) {
+        if (userRoleEl[i].checked) {
+            checkedProp = userRoleEl[i].value;
+        }
+    }
+    return checkedProp;
+}
+
+
+function uploadImageToStorage(UID) {
+    return new Promise(async(resolve, reject) => {
+        let image = userImageEl.files[0];
+        let storageRef = storage.ref();
+        let imageRef = storageRef.child(`avatar/${UID}/${image.name}`);
+        await imageRef.put(image);
+        let url = await imageRef.getDownloadURL();
+        resolve(url);
+    })
+}
 
 firebase.auth().onAuthStateChanged((user) => {
     console.log(user, '*********************');
-    if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
 
-        fetchUsers();
-        // ...
-    } else {
-        // User is signed out
-        // ...
 
+    let pageLocArr = window.location.href.split('/');
+    console.log(pageLocArr)
+    let pageName = pageLocArr[pageLocArr.length - 1];
+    let authenticatedPages = ['home.html'];
+    if (user && authenticatedPages.indexOf(pageName) === -1) {
+        window.location = './home.html';
+    } else if (!user && pageName === 'home.html') {
+        window.location = './index.html';
     }
+    // ...
 });
 
 function signout() {
@@ -138,6 +174,14 @@ function sendPasswordResetEmail() {
             errorvalue.innerHTML = error
         });
 }
+
+function fetchUsers() {
+    let uid = firebase.auth().currentUser.uid;
+    console.log(uid)
+}
+errorvalue.innerHTML = error
+
+
 
 function fetchUsers() {
     let uid = firebase.auth().currentUser.uid;
